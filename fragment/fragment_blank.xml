@@ -3,16 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="#d3d3d3">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
+        android:text="Fragment"
         android:textColor="@color/white"
         android:textSize="40dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:gravity="center"/>
 
 
 </FrameLayout>
