@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import kotlinx.coroutines.delay
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,11 +15,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val nextBtn=findViewById<Button>(R.id.next_button)
         nextBtn.setOnClickListener {
+            //Dialog().show(supportFragmentManager,"TAG")
             val intent= Intent(this,SecondActivity::class.java)
             startActivity(intent)
         }
+
+
         addFragment()
     }
+
+
 
     fun addFragment(){
         /*val transaction=supportFragmentManager.beginTransaction()
@@ -30,8 +36,13 @@ class MainActivity : AppCompatActivity() {
             setReorderingAllowed(true)
             /*add(R.id.fragment_container,BlankFragment())*/
             add<BlankFragment>(R.id.fragment_container)
-            //addToBackStack()
+            //addToBackStack(null)
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        println("host activity is saving its state")
+        super.onSaveInstanceState(outState)
     }
 }
