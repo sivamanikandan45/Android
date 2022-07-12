@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 
 class BlankFragment : Fragment() {
+    private lateinit var tv:TextView
+    private var counter=0
     override fun onAttach(context: Context) {
         println("Attaching..")
         super.onAttach(context)
@@ -16,6 +20,10 @@ class BlankFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         println("Creating..")
         super.onCreate(savedInstanceState)
+        if(savedInstanceState!=null){
+            counter=savedInstanceState.getInt("count")
+            println("Got value as $counter")
+        }
     }
 
     override fun onCreateView(
@@ -29,11 +37,19 @@ class BlankFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         println("View created.")
+        tv=view.findViewById(R.id.count)
+        val btn=view.findViewById<Button>(R.id.increment)
+        print("counter is $counter")
+        btn.setOnClickListener {
+            counter++
+            tv.text=counter.toString()
+            Dialog().show(childFragmentManager,"TAG")
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        println("View state restored")
+        println("View state is restored..")
         super.onViewStateRestored(savedInstanceState)
     }
 
@@ -60,6 +76,8 @@ class BlankFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         println("Saving instance state..")
         super.onSaveInstanceState(outState)
+        outState.putInt("count",counter)
+        println("value is $counter")
     }
 
     override fun onDestroyView() {
