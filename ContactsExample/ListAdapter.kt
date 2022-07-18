@@ -27,7 +27,7 @@ class ListAdapter(private val list:List<Contact>):RecyclerView.Adapter<ListAdapt
                 val activity=view.context as AppCompatActivity
                 activity.supportFragmentManager.commit {
                     setReorderingAllowed(true)
-                    replace(R.id.container_one,ContactFragment())
+                    replace(R.id.container_one,BlankFragment())
                     addToBackStack(null)
                 }
             }
